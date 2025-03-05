@@ -1,3 +1,4 @@
+import time
 import pytest
 from selenium import webdriver
 
@@ -8,4 +9,5 @@ def browser():
     browser = webdriver.Chrome()
     yield browser
     print("\nquit browser..")
+    time.sleep(30)
     browser.quit()

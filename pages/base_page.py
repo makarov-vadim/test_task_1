@@ -21,4 +21,5 @@ class BasePage:
         )
 
     def go_to_site(self):
+        self.driver.maximize_window()
         return self.driver.get(self.base_url)
