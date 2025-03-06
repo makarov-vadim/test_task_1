@@ -1,5 +1,7 @@
-from selenium import webdriver
+# from selenium import webdriver
+
 from pages.main_page import SearchHelper, Locators
+from fixtures.conftest import browser
 
 # Мои методы
 def get_count_elements(iterable):
@@ -10,7 +12,7 @@ def get_len_max_elem(iterable):
 
 
 
-def test(browser):
+def test_func(browser):
     main_page = SearchHelper(browser)
     main_page.go_to_site()
 
@@ -35,6 +37,7 @@ def test(browser):
     main_page.click_on(Locators.LOCATOR_BUTTON)
 
 
-if __name__ == "__main__":
-    test(webdriver.Chrome())
-    input("Press Enter to finish")
+
+# if __name__ == "__main__":
+#     test_func(webdriver.Chrome())
+#     input('asdad\n')
