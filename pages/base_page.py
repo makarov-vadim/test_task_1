@@ -12,13 +12,11 @@ class BasePage:
 
     def go_to_site(self):
         """Метод, который открывает и разворачивает страниц"""
-
         self.driver.maximize_window()
         return self.driver.get(self.url)
 
     def find_element(self, locator, timeout=10):
         """Метод поиска элемента на странице"""
-
         return WebDriverWait(self.driver, timeout).until(
             EC.presence_of_element_located(locator),
             message=f"Can't find element by locator {locator}",
@@ -26,7 +24,6 @@ class BasePage:
 
     def find_elements(self, locator, timeout=10):
         """Метод поиска группы элементов на странице"""
-
         return WebDriverWait(self.driver, timeout).until(
             EC.presence_of_all_elements_located(locator),
             message=f"Can't find elements by locator {locator}",
@@ -34,7 +31,6 @@ class BasePage:
 
     def scroll(self, value=500, timeout=2):
         """Метод, прокручивающий страниц. По умолчанию прокручивает на 500px"""
-
         time.sleep(timeout)
         scroll_result = self.driver.execute_script(f"window.scrollBy(0, {value})")
         time.sleep(timeout)
