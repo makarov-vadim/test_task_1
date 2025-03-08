@@ -1,25 +1,31 @@
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-
+import time
 
 class BasePage:
-
-    def __init__(self, driver):
+    def __init__(self, driver, url):
         self.driver = driver
-        self.base_url = "https://practice-automation.com/form-fields/"
+        self.url = url
 
-    def find_element(self, locator, time=10):
-        return WebDriverWait(self.driver, time).until(
+    def go_to_site(self):
+        self.driver.maximize_window()
+        return self.driver.get(self.url)
+
+    def find_element(self, locator, timeout=10):
+        return WebDriverWait(self.driver, timeout).until(
             EC.presence_of_element_located(locator),
             message=f"Can't find element by locator {locator}",
         )
 
-    def find_elements(self, locator, time=10):
-        return WebDriverWait(self.driver, time).until(
+    def find_elements(self, locator, timeout=10):
+        return WebDriverWait(self.driver, timeout).until(
             EC.presence_of_all_elements_located(locator),
             message=f"Can't find elements by locator {locator}",
         )
 
-    def go_to_site(self):
-        self.driver.maximize_window()
-        return self.driver.get(self.base_url)
+    def scroll(self, value=500, timeout=2):
+        time.sleep(timeout)
+        scroll_result = self.driver.execute_script(f"window.scrollBy(0, {value})")
+        time.sleep(timeout)
+        return scroll_result
+    
